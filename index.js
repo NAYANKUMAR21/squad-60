@@ -235,7 +235,11 @@ function sortChocolateBasedOnCount(chocolates) {
     'red',
     'pink ',
   ];
+
+  chocolates.sort();
+
   let obj = {};
+  let ans = [];
 
   for (let i = 0; i < chocolates.length; i++) {
     let elementFromArray = chocolates[i];
@@ -245,6 +249,17 @@ function sortChocolateBasedOnCount(chocolates) {
       obj[elementFromArray] = obj[elementFromArray] + 1;
     }
   }
+  const sortable = Object.fromEntries(
+    Object.entries(obj).sort(([, a], [, b]) => b - a)
+  );
+
+  Object.keys(sortable).forEach((key) => {
+    for (let i = 0; i < sortable[key]; i++) {
+      ans.push(key);
+    }
+  });
+
+  return ans;
 }
 
 //Progression 7: Change z chocolates of x color to y color
